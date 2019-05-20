@@ -87,12 +87,12 @@ void Display(){
 	    
 
 	    glPushMatrix();
-	    glRotated(angleZ,0.0f,1.0f,0.0f);
+	    glRotatef(angleZ,0.0f,1.0f,0.0f);
 	    	 cube();//chamando o 1o cubo
 	    glPopMatrix();
 
 	    glPushMatrix();
-	   	glRotated(angleX,1.0f,0.0f,0.0f);
+	   	glRotatef(angleX,1.0f,0.0f,0.0f);
 	    	 cube();//chamando o 1o cubo
 	    glPopMatrix();
 
