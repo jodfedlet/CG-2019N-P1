@@ -15,29 +15,8 @@ GLfloat angleZ = 0.0f;
 GLfloat angleX = 0.0f;
 
 
-void Display(){
-	// Set Background Color
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	// Clear screen
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// Reset transformations
-	//glLoadIdentity();
-
-	   glMatrixMode(GL_PROJECTION);
-	   glLoadIdentity( );
-	   glOrtho(-10, 10, 10, -10, 1, 10);
-
-	   glMatrixMode(GL_MODELVIEW);
-	   glLoadIdentity( );
-	   gluLookAt(3, 4, 2,  //from. Posicao onde a camera esta posicionada
-	             0, 0, 0,  //to. Posicao absoluta onde a camera esta vendo
-	             0, 0, 1); //up. Vetor Up.
-
-	    glRotated(angleZ,0.0f,0.0f,1.0f);
-	    glRotated(angleX,1.0f,0.0f,0.0f);
-
-		glBegin(GL_QUADS);
+void cube(){
+	glBegin(GL_QUADS);
 
 			    glColor3f(1.0f,0.0f,0.0f); //red part
 			    glVertex3f(1.0f,1.0f,1.0f);
@@ -81,6 +60,41 @@ void Display(){
 			    glVertex3f(-1.0f,-1.0f,1.0f);
 
 	    glEnd();
+
+}
+
+
+void Display(){
+	// Set Background Color
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	// Clear screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Reset transformations
+	//glLoadIdentity();
+
+	   glMatrixMode(GL_PROJECTION);
+	   glLoadIdentity( );
+	   glOrtho(-10, 10, 10, -10, 1, 10);
+
+	   glMatrixMode(GL_MODELVIEW);
+	   glLoadIdentity( );
+	   gluLookAt(3, 4, 2,  //from. Posicao onde a camera esta posicionada
+	             0, 0, 0,  //to. Posicao absoluta onde a camera esta vendo
+	             0, 0, 1); //up. Vetor Up.
+
+	    
+	    
+
+	    glPushMatrix();
+	    glRotated(angleZ,0.0f,1.0f,0.0f);
+	    	 cube();//chamando o 1o cubo
+	    glPopMatrix();
+
+	    glPushMatrix();
+	   	glRotated(angleX,1.0f,0.0f,0.0f);
+	    	 cube();//chamando o 1o cubo
+	    glPopMatrix();
 
 		glFlush();
 		glutSwapBuffers();
