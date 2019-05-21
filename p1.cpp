@@ -117,7 +117,7 @@ void Display(){
 		    glRotatef(angleY,0.0f,1.0f,0.0f);
 		   	glRotatef(angleX,1.0f,0.0f,0.0f);
 		   
-	    	 cube();//chamando o 1o cubo
+	    	 cube();//chamando o 2o cubo
 	    glPopMatrix();
 
 		
