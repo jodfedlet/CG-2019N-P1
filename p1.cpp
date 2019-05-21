@@ -1,19 +1,28 @@
+/*
+Implementar uma aplicação gráfica usando OpenGL que mostre dois cubos coloridos girando,
+um ao centro da tela e outro orbitando ao redor desse primeiro cubo.
+
+Autor: Jod Fedlet PIERRE
+email: fedletpierre15@gmail.com
+
+github: jodfedlet
+
+to compile
+ g++ p1.cpp -o make -lglut -lGLU -lGL
+ ./make
+*/
+
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <GL/gl.h>
 #include <iostream>
 
-/*
-to compile
- g++ p1.cpp -o make -lglut -lGLU -lGL
- ./make
-
-*/
 
 GLfloat translate = 5;
 GLfloat angleX = 0;
 GLfloat angleY = 0;
+GLfloat angleYY = 0;
 
 //Define how many frames per seconds we want our
 // applications to run.
@@ -21,6 +30,7 @@ const unsigned int FRAMES_PER_SECOND = 30;
 const unsigned int UPDATE_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 
 void cube(){
+	glScalef(0.5f,0.5f,0.5f);
 	glBegin(GL_QUADS);
 
 			    glColor3f(1.0f,0.0f,0.0f); //red part
@@ -94,7 +104,7 @@ void Display(){
 	   	
 	   	glRotatef(angleY,0.0f,1.0f,0.0f);
 	    glPushMatrix();
-	    //glRotatef(angleX,2.0f,0.0f,0.0f);
+	    glRotatef(angleYY,0.0f,1.0f,0.0f);
 	   			cube();//chamando o 1o cubo
 	    glPopMatrix();
 
@@ -103,11 +113,14 @@ void Display(){
 	 
 
 	    glPushMatrix();
-	   	glRotatef(angleX,1.0f,0.0f,0.0f);
+	    
+		    glRotatef(angleY,0.0f,1.0f,0.0f);
+		   	glRotatef(angleX,1.0f,0.0f,0.0f);
+		   
 	    	 cube();//chamando o 1o cubo
 	    glPopMatrix();
 
-		//glFlush();
+		
 		glutSwapBuffers();
 
 	}
@@ -115,9 +128,11 @@ void Display(){
 	void update(int value)
 {
 	// Update the angle of rotation
-	angleY += 1;
+	angleY += 0.5;
+	angleYY += -0.8;
 	
-	angleX += 3;
+	angleX += 0.8;
+	
 
 	// Request a new frame rendering
 	glutPostRedisplay();
